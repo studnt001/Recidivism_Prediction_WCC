@@ -1,3 +1,3 @@
 # Recidivism_Prediction_WCC
 https://recidivismpredictionwcc-kfyajwz7quye87vxkogsah.streamlit.app/
-Data sets: https://drive.google.com/drive/folders/12J2RHq5HRX9JDTeJUPCvzlfXN3xOyjSV?usp=drive_link
+https://drive.google.com/drive/folders/12J2RHq5HRX9JDTeJUPCvzlfXN3xOyjSV?usp=drive_link
