@@ -28,6 +28,7 @@ st.set_page_config(
 # CONSTANTS
 # ──────────────────────────────────────────────────────────────────────────────
 DRIVE_FOLDER_ID = "12J2RHq5HRX9JDTeJUPCvzlfXN3xOyjSV"
+WCLD_FILE_ID    = "1VLFg48_UPMt8YmjwZMMsYLFKflEowBO-"
 LOCAL_DIR       = "dashboard_data"
 EDA_CSV         = os.path.join(LOCAL_DIR, "wcld_clean.csv")
 SCORES_CSV      = os.path.join(LOCAL_DIR, "model_scores.csv")
@@ -150,6 +151,17 @@ def download_data():
             pass
     return True
 
+@st.cache_data(show_spinner="Downloading EDA dataset from Google Drive (557 MB, one time only)…")
+def download_eda_csv():
+    os.makedirs(LOCAL_DIR, exist_ok=True)
+    if not os.path.exists(EDA_CSV):
+        if GDOWN_AVAILABLE:
+            url = f"https://drive.google.com/uc?id={WCLD_FILE_ID}"
+            gdown.download(url, EDA_CSV, quiet=False)
+        else:
+            st.error("gdown is not installed. Run: pip install gdown")
+    return True
+
 @st.cache_data(show_spinner="Loading model artefacts…")
 def load_model_data():
     fi   = pd.read_csv(FI_CSV)
@@ -213,7 +225,7 @@ def badge_color(auc):
 # DOWNLOAD (runs once)
 # ──────────────────────────────────────────────────────────────────────────────
 download_data()
-
+download_eda_csv()
 # ──────────────────────────────────────────────────────────────────────────────
 # SIDEBAR NAVIGATION
 # ──────────────────────────────────────────────────────────────────────────────
