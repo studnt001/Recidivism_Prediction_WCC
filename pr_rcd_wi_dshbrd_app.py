@@ -321,7 +321,7 @@ if page == "📊 Performance":
         st.dataframe(
             compare_df[["Model", "AUC-ROC", "AUC-PR", "vs COMPAS (0.70)"]],
             hide_index=True,
-            use_container_width=True,
+            width='stretch',
         )
 
     # Side-by-side AUC bar charts
@@ -354,7 +354,7 @@ if page == "📊 Performance":
             plot_bgcolor="white",
         )
         fig_cmp.update_yaxes(range=[0.55, 0.75])
-        st.plotly_chart(fig_cmp, use_container_width=True)
+        st.plotly_chart(fig_cmp, width='stretch')
 
     # ── Top Predictive Features ───────────────────────────────────────────────
     st.markdown(
@@ -386,7 +386,7 @@ if page == "📊 Performance":
             plot_bgcolor="white",
         )
         fig_fi.update_xaxes(showgrid=True, gridcolor="#F1F5F9")
-        st.plotly_chart(fig_fi, use_container_width=True)
+        st.plotly_chart(fig_fi, width='stretch')
 
     with col_fi2:
         # Neighborhood vs individual pie
@@ -406,7 +406,7 @@ if page == "📊 Performance":
                 margin=dict(t=40, b=10, l=10, r=10),
                 paper_bgcolor="white",
             )
-            st.plotly_chart(fig_pie, use_container_width=True)
+            st.plotly_chart(fig_pie, width='stretch')
 
         # SEDI quintile chart
         st.markdown("**Recidivism Rate by SEDI Quintile**")
@@ -428,7 +428,7 @@ if page == "📊 Performance":
             paper_bgcolor="white",
             plot_bgcolor="white",
         )
-        st.plotly_chart(fig_sedi, use_container_width=True)
+        st.plotly_chart(fig_sedi, width='stretch')
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -576,7 +576,7 @@ elif page == "🔍 EDA":
                 paper_bgcolor="white", plot_bgcolor="white",
                 xaxis_tickangle=-20,
             )
-            st.plotly_chart(fig_race, use_container_width=True)
+            st.plotly_chart(fig_race, width='stretch')
         else:
             st.info("Race or recidivism column not available.")
 
@@ -604,7 +604,7 @@ elif page == "🔍 EDA":
                 margin=dict(t=40, b=40, l=10, r=10),
                 paper_bgcolor="white", plot_bgcolor="white",
             )
-            st.plotly_chart(fig_sex, use_container_width=True)
+            st.plotly_chart(fig_sex, width='stretch')
         else:
             st.info("Sex or recidivism column not available.")
 
@@ -637,7 +637,7 @@ elif page == "🔍 EDA":
                 margin=dict(t=40, b=40, l=10, r=10),
                 paper_bgcolor="white", plot_bgcolor="white",
             )
-            st.plotly_chart(fig_age, use_container_width=True)
+            st.plotly_chart(fig_age, width='stretch')
         else:
             st.info("Age or recidivism column not available.")
 
@@ -665,7 +665,7 @@ elif page == "🔍 EDA":
                 paper_bgcolor="white", plot_bgcolor="white",
                 xaxis_tickangle=-30,
             )
-            st.plotly_chart(fig_sev, use_container_width=True)
+            st.plotly_chart(fig_sev, width='stretch')
         else:
             st.info("Severity column not available.")
 
@@ -701,7 +701,7 @@ elif page == "🔍 EDA":
                 margin=dict(t=40, b=40, l=10, r=10),
                 paper_bgcolor="white", plot_bgcolor="white",
             )
-            st.plotly_chart(fig_prior, use_container_width=True)
+            st.plotly_chart(fig_prior, width='stretch')
         else:
             st.info("Prior history or recidivism column not available.")
 
@@ -734,7 +734,7 @@ elif page == "🔍 EDA":
                 yaxis=dict(gridcolor="#F1F5F9"),
                 xaxis=dict(gridcolor="#F1F5F9"),
             )
-            st.plotly_chart(fig_yr, use_container_width=True)
+            st.plotly_chart(fig_yr, width='stretch')
         else:
             st.info("Year or recidivism column not available.")
 
@@ -769,7 +769,7 @@ elif page == "🔍 EDA":
     if sel_cols:
         st.dataframe(
             df_f[sel_cols].head(n_rows).reset_index(drop=True),
-            use_container_width=True,
+            width='stretch',
             height=380,
         )
         st.caption(
@@ -906,7 +906,7 @@ elif page == "👤 Individual Risk Scoring":
     st.markdown("---")
     col_btn, col_note = st.columns([1, 4])
     with col_btn:
-        run = st.button("🔮 Generate Risk Score", type="primary", use_container_width=True)
+        run = st.button("🔮 Generate Risk Score", type="primary", width='stretch')
     with col_note:
         st.caption(
             "The risk score is estimated using a lookup approach based on similar profiles "
@@ -1006,7 +1006,7 @@ elif page == "👤 Individual Risk Scoring":
                 height=280, margin=dict(t=20, b=10, l=20, r=20),
                 paper_bgcolor="white",
             )
-            st.plotly_chart(fig_gauge, use_container_width=True)
+            st.plotly_chart(fig_gauge, width='stretch')
 
         with res2:
             st.markdown("**Risk Tier**")
@@ -1059,7 +1059,7 @@ elif page == "👤 Individual Risk Scoring":
                 paper_bgcolor="white",
                 plot_bgcolor="white",
             )
-            st.plotly_chart(fig_wf, use_container_width=True)
+            st.plotly_chart(fig_wf, width='stretch')
 
         # ── Population comparison using scores if available ─────────────────
         if scores is not None and "y_prob_xgb" in scores.columns:
@@ -1095,7 +1095,7 @@ elif page == "👤 Individual Risk Scoring":
                     plot_bgcolor="white",
                     showlegend=False,
                 )
-                st.plotly_chart(fig_dist, use_container_width=True)
+                st.plotly_chart(fig_dist, width='stretch')
 
             with comp2:
                 # Race comparison from scores
@@ -1130,7 +1130,7 @@ elif page == "👤 Individual Risk Scoring":
                         paper_bgcolor="white",
                         plot_bgcolor="white",
                     )
-                    st.plotly_chart(fig_rc, use_container_width=True)
+                    st.plotly_chart(fig_rc, width='stretch')
 
         # ── Input summary ──────────────────────────────────────────────────────
         with st.expander("View full input summary", expanded=False):
